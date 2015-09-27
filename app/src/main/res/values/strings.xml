@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ContactManager</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_create_contact">CreateContactActivity</string>
+
+    <string name="name">Name</string>
+    <string name="contact_number">contact number</string>
+    <string name="email">email</string>
+    <string name="address">address</string>
+    <string name="create">Create</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="search">search name,email,number</string>
+</resources>
