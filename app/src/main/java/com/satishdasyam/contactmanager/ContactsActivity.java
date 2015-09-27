@@ -56,11 +56,8 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        binding.vbAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ContactsActivity.this, CreateContactActivity.class));
-            }
+        binding.vbAdd.setOnClickListener(v -> {
+            startActivity(new Intent(ContactsActivity.this, CreateContactActivity.class));
         });
 
         binding.veName.addTextChangedListener(new TextWatcher() {
@@ -119,11 +116,9 @@ public class ContactsActivity extends AppCompatActivity {
                     getName().subSequence(0, 1).charAt(0));
             holder.listRowBinding.parentView.
                     setBackgroundColor(AppUtils.getColor(text, getResources()));
-            holder.listRowBinding.ivContactDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    deleteContact(adapterList.get(position).getRowId());
-                }
+            holder.listRowBinding.ivContactDelete.setOnClickListener(v -> {
+                deleteContact(adapterList.get(position).getRowId());
+
             });
         }
 
@@ -203,19 +198,14 @@ public class ContactsActivity extends AppCompatActivity {
                 }
                 cursor.close();
                 dbAdapter.close();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        contactAdapter.setAdapterList(contactList);
-                    }
-                });
+                runOnUiThread(() -> contactAdapter.setAdapterList(contactList));
             }
         }).start();
 
     }
 
-    private void deleteContact(final String rowId){
-        new AsyncTask<Void,Void,Void>(){
+    private void deleteContact(final String rowId) {
+        new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
                 ContactDBAdapter dbAdapter = new ContactDBAdapter(ContactsActivity.this);
